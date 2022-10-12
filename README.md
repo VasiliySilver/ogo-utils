@@ -7,3 +7,8 @@
 ```shell
 python3 -m pip install ogo-utils
 ```
+
+## Set config
+```shell
+poetry config pypi-token.pypi pypi-token
+```
