@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "ogo-utils"
-version = "0.1.17"
+version = "0.1.18"
 description = "This project prefer utils for self working"
 authors = ["Vasiliy Silver <s555133@mail.ru>"]
 readme = "README.md"

@@ -21,6 +21,8 @@ def read_diary():
     with open(file_path, 'r') as f:
         print(f.read())
 
+    encryption(file=file_path, password=password)
+
 
 def write_diary():
     """ Write your thoughts into the diary file """
