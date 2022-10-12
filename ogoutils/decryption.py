@@ -4,7 +4,12 @@ import pyAesCrypt
 import os
 
 
-def decryption(file, password) -> None:
+class IncorrectPassword(Exception):
+    def __str__(self):
+        return f'\n!!! Некорректный пароль !!!'
+
+
+def decryption(file, password) -> bool:
     """
     Функция для дешифрования файла
     :rtype: None
@@ -12,18 +17,23 @@ def decryption(file, password) -> None:
 
     buffer_size = 512 * 1024
 
-    pyAesCrypt.decryptFile(
-        str(file),
-        str(os.path.splitext(file)[0]),
-        password,
-        buffer_size
-    )
+    try:
+        pyAesCrypt.decryptFile(
+            str(file),
+            str(os.path.splitext(file)[0]),
+            password,
+            buffer_size
+        )
+        # Имя зашифрованного файла
+        print(f'[Файл {str(os.path.splitext(file)[0])} - дешифрован\n\n')
 
-    # Имя зашифрованного файла
-    print(f'[Файл {str(os.path.splitext(file)[0])} - дешифрован')
-
-    # удалим исходный файл
-    os.remove(file)
+        # удалим исходный файл
+        os.remove(file)
+        return True
+    except ValueError:
+        ex = '\n!!! Некорректный пароль !!!\n'
+        print(ex)
+        return False
 
 
 def walk_to_decrypt(directory: str, passwd: str) -> None:
